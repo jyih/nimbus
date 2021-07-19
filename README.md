@@ -1,4 +1,4 @@
-# monospace
+# Nimbus Sounds
 
 [Live](https://nimbus-sounds.herokuapp.com/)
 
