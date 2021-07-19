@@ -4,9 +4,9 @@
 
 ## Target Features
 
-- User authentication: users can sign up and sign in
-- Posts: users can create posts
-- Comments: users can comment on posts
+- User authentication: Users can sign up, login/logout, and login as a demo user
+- Song: Users can upload songs with title and album data
+- Playback Feature: Songs can be played with progress bar and continuous play
 
 ## Technologies Used
 
