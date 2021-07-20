@@ -9,6 +9,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+
+  Song.upload = async function ({ albumId, url, title }) {
+    const song = await Song.create({
+      albumId,
+      url,
+      title
+    });
+    return await Song.findByPk(song.id)
+  }
+
   Song.associate = function (models) {
     Song.belongsTo(models.User, { foreignKey: "userId" });
     Song.belongsTo(models.Album, { foreignKey: "albumId" });
