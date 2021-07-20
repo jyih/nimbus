@@ -5,7 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongList from "./components/SongList";
-import * as songsActions from "./store/songs";
+// import * as songsActions from "./store/songs";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(songsActions.getSongs())
   }, [dispatch]);
 
   return (

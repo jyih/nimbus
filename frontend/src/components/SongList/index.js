@@ -6,7 +6,7 @@ import { getSongs } from "../../store/songs";
 
 const SongList = () => {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs)
+  const songs = Object.values(useSelector((state) => state.songs))
 
   useEffect(() => {
     dispatch(getSongs())
@@ -14,14 +14,16 @@ const SongList = () => {
 
   return (
     <div className='song-list'>
-      {console.log('return', songs)}
-      <ul>
-        {songs.map(song => (
-          <li key={song}>
+      {songs?.map(song => (
+        <ul key={song}>
+          <audio controls autoplay className='song-audio'>
+            <source src={song.url} type="audio/mp3" />
+          </audio>
+          <div className='song-title'>
             {song.title}
-          </li>
-        ))}
-      </ul>
+          </div>
+        </ul>
+      ))}
     </div>
   )
 }

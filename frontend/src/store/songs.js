@@ -16,9 +16,7 @@ export const getSongs = () => async dispatch => {
   }
 }
 
-const initialState = {
-  songs: [],
-}
+const initialState = {}
 
 const songsReducer = (state = initialState, action) => {
   switch (action.type) {
