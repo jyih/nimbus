@@ -7,7 +7,12 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [
       {
         email: 'patrickmoonbird@artists.com',
-        username: 'PatrickMoonBird',
+        username: 'Patrick Moon Bird',
+        hashedPassword: bcrypt.hashSync('artist'),
+      },
+      {
+        email: 'samfeldt@artists.com',
+        username: 'Sam Feldt',
         hashedPassword: bcrypt.hashSync('artist'),
       },
     ], {});

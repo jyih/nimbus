@@ -5,6 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongList from "./components/SongList";
+import AudioPlayer from "./components/AudioPlayer";
+import SongFormPage from './components/SongFormPage';
 // import * as songsActions from "./store/songs";
 
 function App() {
@@ -22,9 +24,13 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SongList />
+            <AudioPlayer />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/upload'>
+            <SongFormPage />
           </Route>
         </Switch>
       )}

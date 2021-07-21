@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
 
 import { getSongs } from "../../store/songs";
 
@@ -15,10 +14,16 @@ const SongList = () => {
   return (
     <div className='song-list'>
       {songs?.map(song => (
-        <ul key={song}>
-          <audio controls autoplay className='song-audio'>
+        <ul key={song.id}>
+          <div>
+            <img className='song-album-art' src={song.Album.imageUrl} alt={song.Album.title} />
+          </div>
+          <audio controls className='song-audio'>
             <source src={song.url} type="audio/mp3" />
           </audio>
+          <div className='song-artist'>
+            {song.User.username}
+          </div>
           <div className='song-title'>
             {song.title}
           </div>

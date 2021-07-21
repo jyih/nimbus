@@ -1,11 +1,13 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+// const { check } = require('express-validator');
+// const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Song } = require('../../db/models');
+const { Album } = require('../../db/models');
+const { User } = require('../../db/models');
 
 const router = express.Router();
 
@@ -28,8 +30,8 @@ router.post(
   '/',
   // validateSongs,
   asyncHandler(async (req, res) => {
-    const { albumId, url, title } = req.body;
-    const song = await Song.upload({ albumId, url, title });
+    const { userId, albumId, url, title } = req.body;
+    const song = await Song.create({ userId, albumId, url, title });
 
     return res.json({
       song,
@@ -37,8 +39,11 @@ router.post(
   }),
 );
 
+// Get All Songs
 router.get('/', asyncHandler(async (req, res) => {
-  return res.json(await Song.findAll())
+  return res.json(await Song.findAll({
+    include: [Album, User]
+  }))
 }))
 
 // Get Song
@@ -46,22 +51,22 @@ router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const song = await Song.findByPk(id);
   return res.json(song)
-})
-
-)
+}))
 
 // Edit a Song
 router.put('/:id', asyncHandler(async (req, res) => {
-  const songId = req.params.id;
+  const id = req.params.id;
   const { albumId, url, title } = req.body;
-  await Song.update(albumId, url, title,
+  console.log({ albumId, url, title })
+  await Song.update({ albumId, url, title },
     {
-      where: { id: songId },
+      where: { id },
       returning: true,
       plain: true
     }
   )
-  return await Song.findByPk(songId);
+  const song = await Song.findByPk(id);
+  return res.json(song)
 }))
 
 //Delete Song
@@ -73,7 +78,6 @@ router.delete('/:id', asyncHandler(async (req, res) => {
   await Song.destroy({ where: { id: song.id } });
   const deletedId = song.id;
   return res.json({ deletedId })
-})
-)
+}))
 
 module.exports = router;
