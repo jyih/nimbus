@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
 
 import { getSongs } from "../../store/songs";
 
 const SongList = () => {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs)
+  const songs = Object.values(useSelector((state) => state.songs))
 
   useEffect(() => {
     dispatch(getSongs())
@@ -14,14 +13,22 @@ const SongList = () => {
 
   return (
     <div className='song-list'>
-      {console.log('return', songs)}
-      <ul>
-        {songs.map(song => (
-          <li key={song}>
+      {songs?.map(song => (
+        <ul key={song.id}>
+          <div>
+            <img className='song-album-art' src={song.Album.imageUrl} alt={song.Album.title} />
+          </div>
+          <audio controls className='song-audio'>
+            <source src={song.url} type="audio/mp3" />
+          </audio>
+          <div className='song-artist'>
+            {song.User.username}
+          </div>
+          <div className='song-title'>
             {song.title}
-          </li>
-        ))}
-      </ul>
+          </div>
+        </ul>
+      ))}
     </div>
   )
 }

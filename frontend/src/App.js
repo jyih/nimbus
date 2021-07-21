@@ -5,7 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongList from "./components/SongList";
-import * as songsActions from "./store/songs";
+import AudioPlayer from "./components/AudioPlayer";
+import SongFormPage from './components/SongFormPage';
+// import * as songsActions from "./store/songs";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,7 +15,6 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(songsActions.getSongs())
   }, [dispatch]);
 
   return (
@@ -23,9 +24,13 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SongList />
+            <AudioPlayer />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/upload'>
+            <SongFormPage />
           </Route>
         </Switch>
       )}
