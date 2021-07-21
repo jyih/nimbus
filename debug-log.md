@@ -13,3 +13,5 @@ could not get audio tag to switch sources
 -needed to directly pass in a url into the helper function used in the onClick
 
 could not get audio tag to auto play after switching sources
+
+CRUD cannot get past invalid csruf token

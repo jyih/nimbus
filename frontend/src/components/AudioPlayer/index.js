@@ -17,15 +17,15 @@ const AudioPlayer = () => {
   const selectSong = async (e, url) => {
     e.preventDefault();
     setCurrSong(url)
-    const player = document.querySelector('#audioPlayer')
+    // const player = document.querySelector('#audioPlayer')
     // player.pause();
     // player.load();
-    player.play();
+    // player.play();
   }
 
   return (
     <div className="container-player">
-      <audio controls autoplay={true} id='audioPlayer' src={currSong}>
+      <audio controls autoPlay id='audioPlayer' src={currSong}>
         {/* <source src={currSong} type="audio/mp3" /> */}
       </audio>
       <ul id='playlist'>
