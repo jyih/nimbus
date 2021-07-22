@@ -13,5 +13,12 @@ could not get audio tag to switch sources
 -needed to directly pass in a url into the helper function used in the onClick
 
 could not get audio tag to auto play after switching sources
+-autoPlay with capital P
 
-CRUD cannot get past invalid csruf token
+CRUD cannot get past invalid csurf token
+-use csurfFetch
+-spell my thunk function correctly instead of using action creator
+
+Could not load a song page / state wasn't loading
+-use optional chaining
+-happening is your state isn’t loaded on the first render which is throwing an error in your jsx, but then it rerenders and should work when you do have state loaded.

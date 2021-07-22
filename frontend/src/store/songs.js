@@ -1,7 +1,9 @@
 import { csrfFetch } from './csrf';
 
-const LOAD_SONGS = 'songs/LOAD_SONGS'
-const UPLOAD = 'songs/UPLOAD'
+const LOAD_SONGS = 'songs/LOAD_SONGS';
+const UPLOAD = 'songs/UPLOAD';
+const EDIT = 'songs/EDIT'
+const REMOVE = 'songs/REMOVE';
 
 export const load = songs => ({
   type: LOAD_SONGS,
@@ -11,6 +13,16 @@ export const load = songs => ({
 export const upload = song => ({
   type: UPLOAD,
   song
+})
+
+export const edit = song => ({
+  type: EDIT,
+  song
+})
+
+export const remove = songId => ({
+  type: REMOVE,
+  songId
 })
 
 //thunk
@@ -44,6 +56,32 @@ export const uploadSong = (payload) => async dispatch => {
   }
 }
 
+export const editSong = (songId, payload) => async dispatch => {
+  const res = await csrfFetch(`/api/songs/${songId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+
+  if (res.ok) {
+    const song = res.json();
+    dispatch(edit(song))
+    return song;
+  }
+}
+
+export const removeSong = (songId) => async dispatch => {
+  const res = await csrfFetch(`/api/songs/${songId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (res.ok) {
+    const deletedSongId = res.json();
+    dispatch(remove(songId));
+    return deletedSongId;
+  }
+}
+
 const initialState = {}
 
 const songsReducer = (state = initialState, action) => {
@@ -61,8 +99,21 @@ const songsReducer = (state = initialState, action) => {
     case UPLOAD: {
       return {
         ...state,
-        song: { ...action.song },
+        ...action.song,
       }
+    }
+    case EDIT: {
+      const newState = { ...state }
+      // newState[]
+      return {
+        ...state,
+        ...action.song,
+      }
+    }
+    case REMOVE: {
+      const newState = { ...state };
+      delete newState[action.songId];
+      return newState;
     }
     default:
       return state;
