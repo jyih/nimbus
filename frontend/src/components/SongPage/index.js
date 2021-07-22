@@ -32,9 +32,6 @@ function SongPage() {
       <div>
         <img className='song-album-art' src={song?.Album?.imageUrl} alt={song?.Album?.title} />
       </div>
-      <audio controls src={song?.url} className='song-audio'>
-        {/* <source src={song?.url} type="audio/mp3" /> */}
-      </audio>
       <div className='song-artist'>
         {song?.User.username}
       </div>

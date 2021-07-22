@@ -23,6 +23,7 @@ const SongList = () => {
                 className='song-album-art'
                 src={song?.Album?.imageUrl}
                 alt={song?.Album?.title}
+                onClick={() => dispatch(audioPlayerActions.setCurrent(song))}
               />
             </div>
             <div className='song-artist'>
