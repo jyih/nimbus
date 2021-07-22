@@ -1,0 +1,16 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  top: 0px;
+  width: 100%;
+  height: 20px;
+
+  background-color: orange;
+}
+
+.profile-dropdown {
+  /* position: */
+  height: 100px;
+  list-style-type: none;
+  background-color: red;
+}

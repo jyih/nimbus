@@ -1,0 +1,39 @@
+.song-list {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px 10px;
+  padding: 1%;
+  /* grid-template-areas:
+  "song1 song2 song3 song4 song5 song6"
+  "song7 song8 song9 song10 song11 song12";  ; */
+}
+
+/* .song1 {
+  grid-area: song1
+}
+
+.song2 {
+  grid-area: song2
+} */
+
+/* .song-container {
+  max-width: 150px
+} */
+
+.song-album-art {
+  /* width: 100%; */
+  max-width: 150px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+/* @media screen {
+  
+} */

@@ -25,7 +25,6 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <SongList />
-            <AudioPlayer />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
@@ -38,6 +37,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <AudioPlayer />
     </>
   );
 }
