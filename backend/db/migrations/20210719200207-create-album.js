@@ -9,13 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/No_Image_Available.jpg'
       },
       createdAt: {
         allowNull: false,

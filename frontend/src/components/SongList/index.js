@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongs } from "../../store/songs";
+import * as songsActions from "../../store/songs";
+import * as audioPlayerActions from "../../store/audioPlayer";
 import "./SongList.css";
 
 const SongList = () => {
@@ -8,8 +9,8 @@ const SongList = () => {
   const songs = Object.values(useSelector((state) => state.songs))
 
   useEffect(() => {
-    dispatch(getSongs())
-    console.log('songs from songlist:', songs)
+    dispatch(songsActions.getSongs())
+    // console.log('songs from songlist:', songs)
   }, [dispatch])
 
   return (
@@ -18,11 +19,12 @@ const SongList = () => {
         {songs?.map(song => (
           <div className={`song-container song${song?.id}`} key={song?.id}>
             <div>
-              <img className='song-album-art' src={song?.Album?.imageUrl} alt={song?.Album?.title} />
+              <img
+                className='song-album-art'
+                src={song?.Album?.imageUrl}
+                alt={song?.Album?.title}
+              />
             </div>
-            {/* <audio controls className='song-audio'>
-            <source src={song.url} type="audio/mp3" />
-          </audio> */}
             <div className='song-artist'>
               {song?.User.username}
             </div>

@@ -7,22 +7,16 @@ import * as songActions from "../../store/songs";
 import SongEditFormModal from "../SongEditFormModal";
 
 function SongPage() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
-  const stateVar = useSelector(state => state);
+  const sessionUser = useSelector((state) => state.session.user);
   const songs = Object.values(useSelector((state) => state.songs))
   const song = songs?.find(song => song.id === +id)
 
   useEffect(() => {
     dispatch(songActions.getSongs())
   }, [dispatch])
-
-  console.log("stateVar:", stateVar)
-  console.log("stateVar.songs:", stateVar.songs)
-  console.log("id:", id)
-  console.log('songs:', songs)
-  console.log('song:', song)
 
   // const editOnClick = e => {
   //   dispatch(songActions.editSong(id))
@@ -48,8 +42,12 @@ function SongPage() {
         {song?.title}
       </div>
       {/* <button onClick={e => editOnClick(e)}>Edit</button> */}
-      <SongEditFormModal />
-      <button onClick={e => removeOnClick(e)}>Delete</button>
+      {sessionUser?.id === song?.userId &&
+        < div >
+          <SongEditFormModal />
+          <button onClick={e => removeOnClick(e)}>Delete</button>
+        </div>
+      }
     </>
   )
 }
