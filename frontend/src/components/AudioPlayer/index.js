@@ -16,7 +16,6 @@ const AudioPlayer = () => {
     dispatch(songsActions.getSongs())
   }, [dispatch])
 
-
   const selectSong = async (e, song) => {
     e.preventDefault();
     // setCurrSong(song.url)
