@@ -46,6 +46,13 @@ router.post(
   }),
 );
 
-// GET all Albums
+// GET all Albums of user
+router.get('/:id/albums', asyncHandler(async (req, res) => {
+  const id = req.params.id
+  const albums = await Album.findAll({ where: { userId: id } })
+  return res.json({
+    albums,
+  });
+}))
 
 module.exports = router;

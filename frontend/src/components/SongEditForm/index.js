@@ -1,32 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import './SongUploadPage.css';
-import songsReducer, * as songActions from "../../store/songs";
+import * as songActions from "../../store/songs";
 import * as albumActions from "../../store/album";
 
-function SongUploadForm() {
-  const { id } = useParams();
+function SongEditForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const albums = useSelector((state) => state.session.albums);
-  const songs = useSelector((state) => state.session.songs);
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
-  // const [album, setAlbum] = useState("");
-  const [albumId, setAlbumId] = useState(0)
+  const [album, setAlbum] = useState("");
+  const [albumId, setAlbumId] = useState("")
   const [errors, setErrors] = useState([]);
-
-  if (id && songs) {
-    setTitle(songs[id].title)
-    setUrl(songs[id].title)
-    setAlbumId(songs[id].albumId)
-  }
-
-  useEffect(() => {
-    dispatch(albumActions.getUserAlbums(sessionUser.id))
-  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,28 +24,23 @@ function SongUploadForm() {
     }
 
     setErrors([]);
-    if (id) {
-      dispatch(songActions.editSong(id, {
-        title,
-        url,
-        albumId,
-      }))
-    } else {
-      dispatch(songActions.uploadSong({
-        userId: sessionUser.id,
-        title,
-        url,
-        albumId,
-      }))
-    }
-
+    dispatch(songActions.uploadSong({
+      userId: sessionUser.id,
+      title,
+      url,
+      albumId,
+      // albumId: (album ? album.id : albumId),
+    }))
+    //   .catch(async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //   });
     history.push('/');
   };
 
   const updateAlbum = e => {
-    if (e.target.value) {
-      setAlbumId(e.target.value.id)
-    }
+    setAlbum(e.target.value);
+    setAlbumId(e.target.value.id)
   }
 
   return (
@@ -107,9 +90,9 @@ function SongUploadForm() {
           required
         />
       </label> */}
-      <button type="submit">{id ? "Submit" : "Upload"}</button>
+      <button type="submit">Upload</button>
     </form>
   );
 }
 
-export default SongUploadForm;
+export default SongEditForm;

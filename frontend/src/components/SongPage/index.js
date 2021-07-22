@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as songActions from "../../store/songs";
 import { useHistory, useParams } from "react-router-dom";
 
-import { getSongs, removeSong } from "../../store/songs";
+import * as songActions from "../../store/songs";
+// import { getSongs, removeSong } from "../../store/songs";
+import SongEditFormModal from "../SongEditFormModal";
 
 function SongPage() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function SongPage() {
   const song = songs?.find(song => song.id === +id)
 
   useEffect(() => {
-    dispatch(getSongs())
+    dispatch(songActions.getSongs())
   }, [dispatch])
 
   console.log("stateVar:", stateVar)
@@ -23,18 +24,22 @@ function SongPage() {
   console.log('songs:', songs)
   console.log('song:', song)
 
-  const deleteClick = e => {
-    dispatch(removeSong(id))
+  // const editOnClick = e => {
+  //   dispatch(songActions.editSong(id))
+  // }
+
+  const removeOnClick = e => {
+    dispatch(songActions.removeSong(id))
     history.push('/')
   }
 
   return (
     <>
       <div>
-        <img className='song-album-art' src={song?.Album.imageUrl} alt={song?.Album.title} />
+        <img className='song-album-art' src={song?.Album?.imageUrl} alt={song?.Album?.title} />
       </div>
-      <audio controls className='song-audio'>
-        <source src={song?.url} type="audio/mp3" />
+      <audio controls src={song?.url} className='song-audio'>
+        {/* <source src={song?.url} type="audio/mp3" /> */}
       </audio>
       <div className='song-artist'>
         {song?.User.username}
@@ -42,7 +47,9 @@ function SongPage() {
       <div className='song-title'>
         {song?.title}
       </div>
-      <button onClick={e => deleteClick(e)}>Delete Song</button>
+      {/* <button onClick={e => editOnClick(e)}>Edit</button> */}
+      <SongEditFormModal />
+      <button onClick={e => removeOnClick(e)}>Delete</button>
     </>
   )
 }
