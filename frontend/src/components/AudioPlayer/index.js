@@ -1,34 +1,35 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getSongs } from "../../store/songs";
+import * as songsActions from "../../store/songs";
+import * as audioPlayerActions from "../../store/audioPlayer";
 import './AudioPlayer.css'
 
 const AudioPlayer = () => {
   const dispatch = useDispatch();
-  const songs = Object.values(useSelector((state) => state.songs))
-  const [currSong, setCurrSong] = useState('');
-  //https://nimbus-sounds.s3.us-west-1.amazonaws.com/Mumford+%26+Sons+-+I+Will+Wait+(Bloombox+%26+Sam+Feldt+Remix).mp3
+  const songs = Object.values(useSelector((state) => state.songs));
+  const currSong = useSelector(state => state.audioPlayer.currSong);
+  // const [currSong, setCurrSong] = useState('');
+  const [currSongUrl, setCurrSongUrl] = useState('');
+
   useEffect(() => {
-    dispatch(getSongs())
+    dispatch(songsActions.getSongs())
   }, [dispatch])
 
-  // const element = ReactDom.findDOMNode(this)
 
-  const selectSong = async (e, url) => {
+  const selectSong = async (e, song) => {
     e.preventDefault();
-    setCurrSong(url)
-    // const player = document.querySelector('#audioPlayer')
-    // player.pause();
-    // player.load();
-    // player.play();
+    // setCurrSong(song.url)
+    dispatch(audioPlayerActions.setCurrent(song))
+    // setCurrSongUrl(currSong?.url)
+    // console.log(currSongUrl)
   }
 
   return (
     <>
       <ul id='playlist'>
         {songs?.map(song => (
-          <li key={song.id} onClick={e => selectSong(e, song.url)}>
+          <li key={song.id} onClick={e => selectSong(e, song)}>
             <a href={song.url}>
               {song.title}
             </a>
@@ -36,8 +37,7 @@ const AudioPlayer = () => {
         ))}
       </ul>
       <div className="audio-container">
-        <audio controls autoPlay id='audioPlayer' src={currSong}>
-          {/* <source src={currSong} type="audio/mp3" /> */}
+        <audio controls autoPlay id='audioPlayer' src={currSong?.url}>
         </audio>
       </div >
     </>

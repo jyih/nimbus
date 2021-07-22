@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import './SongUploadPage.css';
 import songsReducer, * as songActions from "../../store/songs";
 import * as albumActions from "../../store/album";
@@ -18,6 +18,7 @@ function SongUploadForm() {
   const [albumId, setAlbumId] = useState(0)
   const [errors, setErrors] = useState([]);
 
+  if (!sessionUser) history.push('/');
   if (id && songs) {
     setTitle(songs[id].title)
     setUrl(songs[id].title)
@@ -25,7 +26,7 @@ function SongUploadForm() {
   }
 
   useEffect(() => {
-    dispatch(albumActions.getUserAlbums(sessionUser.id))
+    dispatch(albumActions.getUserAlbums(sessionUser?.id))
   })
 
   const handleSubmit = (e) => {

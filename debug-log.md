@@ -22,3 +22,9 @@ CRUD cannot get past invalid csurf token
 Could not load a song page / state wasn't loading
 -use optional chaining
 -happening is your state isn’t loaded on the first render which is throwing an error in your jsx, but then it rerenders and should work when you do have state loaded.
+
+array labum as select
+
+could not get edit page
+
+css hard

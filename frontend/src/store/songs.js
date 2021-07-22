@@ -5,6 +5,7 @@ const UPLOAD = 'songs/UPLOAD';
 const EDIT = 'songs/EDIT'
 const REMOVE = 'songs/REMOVE';
 
+//action creators
 export const load = songs => ({
   type: LOAD_SONGS,
   songs,
@@ -103,8 +104,6 @@ const songsReducer = (state = initialState, action) => {
       }
     }
     case EDIT: {
-      const newState = { ...state }
-      // newState[]
       return {
         ...state,
         ...action.song,
