@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getSongs } from "../../store/songs";
+import './AudioPlayer.css'
 
 const AudioPlayer = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,7 @@ const AudioPlayer = () => {
   }
 
   return (
-    <div className="container-player">
-      <audio controls autoPlay id='audioPlayer' src={currSong}>
-        {/* <source src={currSong} type="audio/mp3" /> */}
-      </audio>
+    <>
       <ul id='playlist'>
         {songs?.map(song => (
           <li key={song.id} onClick={e => selectSong(e, song.url)}>
@@ -37,8 +35,12 @@ const AudioPlayer = () => {
           </li>
         ))}
       </ul>
-      {/* {audioPlayer()} */}
-    </div >
+      <div className="audio-container">
+        <audio controls autoPlay id='audioPlayer' src={currSong}>
+          {/* <source src={currSong} type="audio/mp3" /> */}
+        </audio>
+      </div >
+    </>
   )
 }
 

@@ -61,54 +61,58 @@ function SongUploadForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Song Title
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Song Url
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Album
-        {/* <input
+    <div className='song-form-container'>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <label>
+          {'Song Title: '}
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          {'Song Url: '}
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          {'Album: '}
+          {/* <input
           type="text"
           value={album}
           onChange={(e) => setAlbum(e.target.value)}
           required
         /> */}
-        <select onChange={updateAlbum}>
-          <option value={null}>-No Album-</option>
-          {albums?.map(album => {
-            <option key={album.id} value={album}>{album.title}</option>
-          })}
-        </select>
-      </label>
-      {/* <label>
+          <select onChange={updateAlbum}>
+            <option value={null}>-No Album-</option>
+            {albums?.map(album => {
+              <option key={album.id} value={album}>{album.title}</option>
+            })}
+          </select>
+        </label>
+        {/* <label>
         Album Id
         <input
-          type="number"
+        type="number"
           value={albumId}
           onChange={(e) => setAlbumId(e.target.value)}
           required
-        />
-      </label> */}
-      <button type="submit">{id ? "Submit" : "Upload"}</button>
-    </form>
+          />
+        </label> */}
+        <div className='button-container'>
+          <button type="submit">{id ? "Submit" : "Upload"}</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

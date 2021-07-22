@@ -38,10 +38,12 @@ router.post(
   }),
 );
 
-// Get All Songs
+// Get 12 Songs
 router.get('/', asyncHandler(async (req, res) => {
   return res.json(await Song.findAll({
-    include: [Album, User]
+    order: [['id', 'DESC']],
+    limit: 12,
+    include: [Album, User],
   }))
 }))
 
