@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import * as songActions from "../../store/songs";
-import './SongFormPage.css';
+import './SongUploadPage.css';
+import { useHistory } from "react-router-dom";
 
-function SongUploadPage() {
+function SongUploadForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -13,25 +14,26 @@ function SongUploadPage() {
   const [albumId, setAlbumId] = useState("")
   const [errors, setErrors] = useState([]);
 
-  // if (!sessionUser) return <Redirect to="/signup" />;
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!sessionUser) {
+      return setErrors(['Please login to upload']);
+    }
+
     setErrors([]);
-    return dispatch(songActions.upload({
+    dispatch(songActions.uploadSong({
       userId: sessionUser.id,
       title,
       url,
-      // albumId: (album ? album.id : albumId),
       albumId,
+      // albumId: (album ? album.id : albumId),
     }))
     //   .catch(async (res) => {
     //     const data = await res.json();
     //     if (data && data.errors) setErrors(data.errors);
     //   });
-
-    // return setErrors(['Confirm Password field must be the same as the Password field']);
+    history.push('/');
   };
 
   return (
@@ -80,4 +82,4 @@ function SongUploadPage() {
   );
 }
 
-export default SongUploadPage;
+export default SongUploadForm;

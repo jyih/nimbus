@@ -6,7 +6,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongList from "./components/SongList";
 import AudioPlayer from "./components/AudioPlayer";
-import SongFormPage from './components/SongFormPage';
+import SongUploadForm from './components/SongUploadForm';
+import SongPage from './components/SongPage';
 // import * as songsActions from "./store/songs";
 
 function App() {
@@ -30,7 +31,10 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path='/upload'>
-            <SongFormPage />
+            <SongUploadForm />
+          </Route>
+          <Route path='/songs/:id'>
+            <SongPage />
           </Route>
         </Switch>
       )}

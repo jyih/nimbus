@@ -9,23 +9,26 @@ const SongList = () => {
 
   useEffect(() => {
     dispatch(getSongs())
+    console.log('songs from songlist:', songs)
   }, [dispatch])
 
   return (
     <div className='song-list'>
       {songs?.map(song => (
-        <ul key={song.id}>
+        <ul key={song?.id}>
           <div>
-            <img className='song-album-art' src={song.Album.imageUrl} alt={song.Album.title} />
+            <img className='song-album-art' src={song?.Album.imageUrl} alt={song?.Album.title} />
           </div>
-          <audio controls className='song-audio'>
+          {/* <audio controls className='song-audio'>
             <source src={song.url} type="audio/mp3" />
-          </audio>
+          </audio> */}
           <div className='song-artist'>
-            {song.User.username}
+            {song?.User.username}
           </div>
           <div className='song-title'>
-            {song.title}
+            <a href={`/songs/${song?.id}`}>
+              {song?.title}
+            </a>
           </div>
         </ul>
       ))}
