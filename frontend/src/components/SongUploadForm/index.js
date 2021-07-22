@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Redirect } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import './SongUploadPage.css';
-import songsReducer, * as songActions from "../../store/songs";
+import * as songActions from "../../store/songs";
 import * as albumActions from "../../store/album";
 
 function SongUploadForm() {
@@ -62,7 +62,7 @@ function SongUploadForm() {
   }
 
   return (
-    <div className='song-form-container'>
+    <div className='form-container song-form-container'>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -95,9 +95,9 @@ function SongUploadForm() {
         /> */}
           <select onChange={updateAlbum}>
             <option value={null}>-No Album-</option>
-            {albums?.map(album => {
+            {albums?.map(album =>
               <option key={album.id} value={album}>{album.title}</option>
-            })}
+            )}
           </select>
         </label>
         {/* <label>

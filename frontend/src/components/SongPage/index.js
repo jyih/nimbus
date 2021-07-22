@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -14,9 +14,9 @@ function SongPage() {
   const songs = Object.values(useSelector((state) => state.songs))
   const song = songs?.find(song => song.id === +id)
 
-  useEffect(() => {
-    dispatch(songActions.getSongs())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(songActions.getSongs())
+  // }, [dispatch])
 
   // const editOnClick = e => {
   //   dispatch(songActions.editSong(id))

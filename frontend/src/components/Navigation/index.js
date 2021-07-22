@@ -18,19 +18,32 @@ function Navigation({ isLoaded }) {
     );
   } else {
     sessionLinks = (
+      // <div className='nav-login-left'>
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <div className='nav-create-account'>
+          <NavLink to="/signup">Create account</NavLink>
+        </div>
       </>
+      // </div>
     );
   }
 
   return (
     <nav className='navbar-container'>
-      <>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </>
+      <div className='nav-logo-container'>
+        <img className='nav-logo' alt='Nimbus Sounds' src='https://nimbus-sounds.s3.us-west-1.amazonaws.com/nimbus-grey.png'>
+        </img>
+      </div>
+      <div className='nav-home'>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
+      </div>
+      <div className='nav-site-title'>
+        Nimbus Sounds
+      </div>
+      {isLoaded && sessionLinks}
     </nav>
   );
 }

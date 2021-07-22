@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as songsActions from "../../store/songs";
@@ -10,10 +10,10 @@ const AudioPlayer = () => {
   const songs = Object.values(useSelector((state) => state.songs));
   const currSong = useSelector(state => state.audioPlayer.currSong);
   // const [currSong, setCurrSong] = useState('');
-  const [currSongUrl, setCurrSongUrl] = useState('');
+  // const [currSongUrl, setCurrSongUrl] = useState('');
 
   useEffect(() => {
-    dispatch(songsActions.getSongs())
+    // dispatch(songsActions.getSongs())
   }, [dispatch])
 
   const selectSong = async (e, song) => {
@@ -26,7 +26,7 @@ const AudioPlayer = () => {
 
   return (
     <>
-      <ul id='playlist'>
+      <ul hidden id='playlist'>
         {songs?.map(song => (
           <li key={song.id} onClick={e => selectSong(e, song)}>
             <a href={song.url}>

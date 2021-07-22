@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import * as songsActions from "../../store/songs";
 import * as audioPlayerActions from "../../store/audioPlayer";
 import "./SongList.css";
@@ -10,7 +11,6 @@ const SongList = () => {
 
   useEffect(() => {
     dispatch(songsActions.getSongs())
-    // console.log('songs from songlist:', songs)
   }, [dispatch])
 
   return (
@@ -26,13 +26,13 @@ const SongList = () => {
                 onClick={() => dispatch(audioPlayerActions.setCurrent(song))}
               />
             </div>
+            <div className='song-title-container'>
+              <NavLink className='song-title' to={`/songs/${song?.id}`}>
+                {song?.title}
+              </NavLink>
+            </div>
             <div className='song-artist'>
               {song?.User.username}
-            </div>
-            <div className='song-title'>
-              <a href={`/songs/${song?.id}`}>
-                {song?.title}
-              </a>
             </div>
           </div>
         ))}

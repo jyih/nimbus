@@ -1,18 +1,19 @@
-.song-form-container {
+.form-container {
   margin:auto;
-  background-color: lightgray;
+  padding: 100px 0 100px 0;
+  background-color: white;
   width: 420px;
   /* text-align: center; */
 }
 
-.song-form-container label {
+.form-container label {
   display: block;
   margin-top: 15px;
   /* background-color: gray; */
   /* width: 75px; */
 }
 
-.song-form-container input {
+.form-container input {
   display: block;
   margin-top: 5px;
   width: 100%;

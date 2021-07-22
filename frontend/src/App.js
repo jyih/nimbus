@@ -8,35 +8,42 @@ import SongList from "./components/SongList";
 import AudioPlayer from "./components/AudioPlayer";
 import SongUploadForm from './components/SongUploadForm';
 import SongPage from './components/SongPage';
-// import * as songsActions from "./store/songs";
+import Banner from './components/Banner';
+import * as songsActions from "./store/songs";
+import * as audioPlayerActions from "./store/audioPlayer";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(songsActions.getSongs())
   }, [dispatch]);
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <SongList />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path='/upload'>
-            <SongUploadForm />
-          </Route>
-          <Route path='/songs/:id'>
-            <SongPage />
-          </Route>
-        </Switch>
-      )}
+      <div className='content-container'>
+        {isLoaded && (
+          <Switch>
+            <Route exact path='/'>
+              <Banner />
+              <SongList />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path='/upload'>
+              <SongUploadForm />
+            </Route>
+            <Route path='/songs/:id'>
+              <SongPage />
+            </Route>
+          </Switch>
+        )}
+      </div>
       <AudioPlayer />
     </>
   );
