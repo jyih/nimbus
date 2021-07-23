@@ -1,0 +1,22 @@
+@media screen and (min-width: 900px) {
+  .banner-image-container {
+    height: 454px;
+    background-color: black;
+    text-align: center;
+    /* background-image: url('https://nimbus-sounds.s3.us-west-1.amazonaws.com/logos/banner-2.png');
+    background-size: 100%;
+    background-position-y: -145px; */
+    background-color: black;
+  }
+
+  .banner-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .banner-image-container, .banner-image {
+    display: none;
+  }
+}

@@ -15,8 +15,10 @@ export const create = album => ({
 
 export const getUserAlbums = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/albums`)
+  console.log('getUserAlbums')
   if (res.ok) {
     const albums = await res.json();
+    console.log('getUserAlbums res.ok')
     dispatch(load(albums))
     return albums;
   }

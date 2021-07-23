@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import * as songsActions from "../../store/songs";
 import * as audioPlayerActions from "../../store/audioPlayer";
 import "./SongList.css";
@@ -7,10 +8,10 @@ import "./SongList.css";
 const SongList = () => {
   const dispatch = useDispatch();
   const songs = Object.values(useSelector((state) => state.songs))
+  const noImageUrl = 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/No_Image_Available.jpg'
 
   useEffect(() => {
     dispatch(songsActions.getSongs())
-    // console.log('songs from songlist:', songs)
   }, [dispatch])
 
   return (
@@ -21,18 +22,18 @@ const SongList = () => {
             <div>
               <img
                 className='song-album-art'
-                src={song?.Album?.imageUrl}
+                src={song?.Album?.imageUrl || noImageUrl}
                 alt={song?.Album?.title}
                 onClick={() => dispatch(audioPlayerActions.setCurrent(song))}
               />
             </div>
+            <div className='song-title-container'>
+              <NavLink className='song-title' to={`/songs/${song?.id}`}>
+                {song?.title}
+              </NavLink>
+            </div>
             <div className='song-artist'>
               {song?.User.username}
-            </div>
-            <div className='song-title'>
-              <a href={`/songs/${song?.id}`}>
-                {song?.title}
-              </a>
             </div>
           </div>
         ))}

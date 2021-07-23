@@ -1,16 +1,13 @@
-.form-container {
+/* .form-container {
   margin:auto;
   padding: 100px 0 100px 0;
   background-color: white;
   width: 420px;
-  /* text-align: center; */
 }
 
 .form-container label {
   display: block;
   margin-top: 15px;
-  /* background-color: gray; */
-  /* width: 75px; */
 }
 
 .form-container input {
@@ -24,4 +21,4 @@
   margin: auto;
   width: 100%;
   text-align: center;
-}
+} */

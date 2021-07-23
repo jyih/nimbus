@@ -1,97 +1,82 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+// import './SongForm.css';
 import * as songActions from "../../store/songs";
-import * as albumActions from "../../store/album";
+import * as albumsActions from "../../store/albums";
 
 function SongEditForm() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
-  const albums = useSelector((state) => state.session.albums);
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [album, setAlbum] = useState("");
-  const [albumId, setAlbumId] = useState("")
+  const songs = useSelector((state) => state.songs);
+  const albums = Object.values(useSelector((state) => state.albums));
+
+  const [title, setTitle] = useState(songs[id].title);
+  const [url, setUrl] = useState(songs[id].title);
+  const [albumId, setAlbumId] = useState(songs[id].albumId)
   const [errors, setErrors] = useState([]);
+
+  if (!sessionUser) history.push('/');
+
+  useEffect(() => {
+    dispatch(albumsActions.getUserAlbums(sessionUser.id))
+  }, [dispatch, sessionUser.id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!sessionUser) {
-      return setErrors(['Please login to upload']);
-    }
-
     setErrors([]);
-    dispatch(songActions.uploadSong({
-      userId: sessionUser.id,
+
+    dispatch(songActions.editSong(id, {
       title,
       url,
       albumId,
-      // albumId: (album ? album.id : albumId),
     }))
-    //   .catch(async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   });
+
     history.push('/');
   };
 
-  const updateAlbum = e => {
-    setAlbum(e.target.value);
-    setAlbumId(e.target.value.id)
-  }
-
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Song Title
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Song Url
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Album
-        {/* <input
-          type="text"
-          value={album}
-          onChange={(e) => setAlbum(e.target.value)}
-          required
-        /> */}
-        <select onChange={updateAlbum}>
-          <option value={null}>-No Album-</option>
-          {albums?.map(album => {
-            <option key={album.id} value={album}>{album.title}</option>
-          })}
-        </select>
-      </label>
-      {/* <label>
-        Album Id
-        <input
-          type="number"
-          value={albumId}
-          onChange={(e) => setAlbumId(e.target.value)}
-          required
-        />
-      </label> */}
-      <button type="submit">Upload</button>
-    </form>
+    <div className='form-container song-form-container'>
+      <h1>Edit Song</h1>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <label>
+          {'Song Title: '}
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          {'Song Url: '}
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          {'Album: '}
+          <select value={albumId} onChange={e => setAlbumId(e.target.value)}>
+            <option value={null}>-No Album-</option>
+            {albums && albums.map(album =>
+              <option key={album.id} value={album.id}>{album.title}</option>
+            )}
+          </select>
+        </label>
+        <div className='form-button-container'>
+          <button type="submit">{"Submit Edits"}</button>
+        </div>
+      </form>
+    </div>
   );
 }
 
