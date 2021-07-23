@@ -14,7 +14,7 @@ function SongEditForm() {
   const albums = Object.values(useSelector((state) => state.albums));
 
   const [title, setTitle] = useState(songs[id].title);
-  const [url, setUrl] = useState(songs[id].title);
+  const [url, setUrl] = useState(songs[id].url);
   const [albumId, setAlbumId] = useState(songs[id].albumId)
   const [errors, setErrors] = useState([]);
 

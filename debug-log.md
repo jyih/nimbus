@@ -32,3 +32,6 @@ css hard
 music not persisting
 
 changing db name?
+
+infinite renders on edit page
+-because no res.json()?

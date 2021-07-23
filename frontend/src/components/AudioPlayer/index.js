@@ -1,5 +1,5 @@
 // import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 
 // import * as songsActions from "../../store/songs";
 import * as audioPlayerActions from "../../store/audioPlayer";
@@ -8,7 +8,9 @@ import './AudioPlayer.css'
 const AudioPlayer = () => {
   const dispatch = useDispatch();
   const songs = Object.values(useSelector((state) => state.songs));
+  const audioPlayer = useSelector(state => state.audioPlayer);
   const currSong = useSelector(state => state.audioPlayer.currSong);
+
   // const [currSong, setCurrSong] = useState('');
   // const [currSongUrl, setCurrSongUrl] = useState('');
 
@@ -36,7 +38,11 @@ const AudioPlayer = () => {
         ))}
       </ul>
       <div className="audio-container">
-        <audio controls autoPlay id='audioPlayer' src={currSong?.url}>
+        <audio controls autoPlay
+          volume={audioPlayer.volume}
+          id='audioPlayer'
+          src={currSong?.url}
+        >
         </audio>
       </div >
     </>

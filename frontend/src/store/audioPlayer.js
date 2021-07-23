@@ -5,7 +5,7 @@ export const setCurrent = song => ({
   song
 })
 
-const initialState = { currSong: {} }
+const initialState = { currSong: {}, volume: .5 }
 
 const audioPlayerReducer = (state = initialState, action) => {
   switch (action.type) {
