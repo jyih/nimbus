@@ -1,6 +1,8 @@
 # Nimbus Sounds
 
 [Live](https://nimbus-sounds.herokuapp.com/)
+![home-page](https://github.com/jyih/nimbus/blob/97d8f91eda99d1cfd91056b17563a5ed9d1a48e7/references/ss-home-page.png)
+![upload-page](https://github.com/jyih/nimbus/blob/97d8f91eda99d1cfd91056b17563a5ed9d1a48e7/references/ss-upload-page.png)
 
 ## Target Features
 
