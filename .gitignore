@@ -3,5 +3,6 @@ node_modules
 build
 .DS_Store
 logs.md
-references/
+references/media
+references/other
 .vscode/
