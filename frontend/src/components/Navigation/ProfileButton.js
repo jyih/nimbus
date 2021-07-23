@@ -33,7 +33,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {/* <button onClick={openMenu}>
+      <button onClick={openMenu}>
         <i className="fas fa-ellipsis" />
         <i className="fas fa-user-circle" />
       </button>
@@ -41,13 +41,13 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
-          <li> */}
-      <div className="nav-button-container">
-        <button className="nav-button button-log-out" onClick={logout}>Log out</button>
-      </div>
-      {/* </li>
+          <li>
+            <div className="nav-button-container">
+              <button className="nav-button button-log-out" onClick={logout}>Log out</button>
+            </div>
+          </li>
         </ul>
-      )} */}
+      )}
     </>
   );
 }

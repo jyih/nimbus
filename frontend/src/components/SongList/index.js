@@ -8,6 +8,7 @@ import "./SongList.css";
 const SongList = () => {
   const dispatch = useDispatch();
   const songs = Object.values(useSelector((state) => state.songs))
+  const noImageUrl = 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/No_Image_Available.jpg'
 
   useEffect(() => {
     dispatch(songsActions.getSongs())
@@ -21,7 +22,7 @@ const SongList = () => {
             <div>
               <img
                 className='song-album-art'
-                src={song?.Album?.imageUrl}
+                src={song?.Album?.imageUrl || noImageUrl}
                 alt={song?.Album?.title}
                 onClick={() => dispatch(audioPlayerActions.setCurrent(song))}
               />

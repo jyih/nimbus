@@ -72,3 +72,9 @@ footer {
   width: 100%;
   text-align: center;
 }
+
+/* @media screen and (max-width: 899px) {
+  .banner {
+    visibility: hidden;
+  }
+} */

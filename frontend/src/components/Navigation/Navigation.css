@@ -115,7 +115,7 @@ align-items: center;
   color: #fff;
 }
 
-.button-create-account {
+.button-create-account, .button-upload {
   background-color: rgb(255,85,0);
   color: #fff;
   border-style: none;

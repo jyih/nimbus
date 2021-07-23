@@ -6,6 +6,12 @@
   padding: 2%;
 }
 
+@media screen and (max-width: 1100px) {
+  .song-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 
 .song-container {
   width: 150px;

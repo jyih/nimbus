@@ -1,22 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 // import LoginFormModal from '../LoginFormModal';
+import * as sessionActions from '../../store/session';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push('/');
+  };
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
+      <div className='nav-credentials-container'>
         <div className='nav-button-container'>
-          <NavLink exact to='/upload'>Upload</NavLink>
-          <ProfileButton user={sessionUser} />
+          <NavLink exact to='/upload'>
+            <button className='nav-button button-upload'>
+              Upload
+            </button>
+          </NavLink>
         </div>
-      </>
+        <div className="nav-button-container">
+          <button className="nav-button button-log-out" onClick={logout}>Log out</button>
+        </div>
+        {/* <ProfileButton user={sessionUser} /> */}
+      </div>
     );
   } else {
     sessionLinks = (

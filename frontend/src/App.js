@@ -32,7 +32,7 @@ function App() {
         {isLoaded && (
           <Switch>
             <Route exact path='/'>
-              <Banner />
+              <Banner className='banner' />
               <SongList />
             </Route>
             <Route path="/signup">
