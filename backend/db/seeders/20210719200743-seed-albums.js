@@ -6,6 +6,7 @@ module.exports = {
       {
         userId: 1,
         title: 'Demo-licious',
+        imageUrl: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/No_Image_Available.jpg'
       },
       {
         userId: 2,

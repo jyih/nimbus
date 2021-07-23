@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import * as songActions from "../../store/songs";
 // import { getSongs, removeSong } from "../../store/songs";
-import SongEditFormModal from "../SongEditFormModal";
+// import SongEditFormModal from "../SongEditFormModal";
 
 function SongPage() {
   const { id } = useParams();
@@ -38,11 +38,16 @@ function SongPage() {
       <div className='song-title'>
         {song?.title}
       </div>
-      {/* <button onClick={e => editOnClick(e)}>Edit</button> */}
       {sessionUser?.id === song?.userId &&
         < div >
-          <SongEditFormModal />
-          <button onClick={e => removeOnClick(e)}>Delete</button>
+          {/* <SongEditFormModal /> */}
+          {/* <button onClick={e => editOnClick(e)}>Edit</button> */}
+          <NavLink to={`/edit/${song.id}`}>
+            <button>
+              Edit Song
+            </button>
+          </NavLink>
+          <button onClick={e => removeOnClick(e)}>Delete Song</button>
         </div>
       }
     </>

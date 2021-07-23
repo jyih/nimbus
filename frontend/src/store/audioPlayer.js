@@ -1,12 +1,11 @@
 const SET_CURRENT = 'songs/SET_CURRENT'
 
-
 export const setCurrent = song => ({
   type: SET_CURRENT,
   song
 })
 
-const initialState = {}
+const initialState = { currSong: {} }
 
 const audioPlayerReducer = (state = initialState, action) => {
   switch (action.type) {

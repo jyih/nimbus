@@ -42,10 +42,7 @@
   background-color: red;
 }
 
-.button-sign-in {
-  background-color: #333;
-  color: #fff;
-
+.nav-button{
   display: inline-block;
   position: relative;
   height: 26px;
@@ -60,4 +57,15 @@
   text-align: center;
   vertical-align: baseline;
   box-sizing: border-box;
+}
+
+.button-sign-in {
+  background-color: #333;
+  color: #fff;
+}
+
+.button-create-account {
+  background-color: rgb(255,85,0);
+  color: #fff;
+  border-style: none;
 }

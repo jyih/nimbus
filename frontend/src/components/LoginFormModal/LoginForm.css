@@ -1,0 +1,27 @@
+.form-container {
+  margin:auto;
+  padding: 100px 0 100px 0;
+  background-color: white;
+  width: 420px;
+  /* text-align: center; */
+}
+
+.form-container label {
+  display: block;
+  margin-top: 15px;
+  /* background-color: gray; */
+  /* width: 75px; */
+}
+
+.form-container input {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.form-button-container {
+  margin-top: 20px;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}

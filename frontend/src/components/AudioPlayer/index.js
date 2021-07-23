@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as songsActions from "../../store/songs";
+// import * as songsActions from "../../store/songs";
 import * as audioPlayerActions from "../../store/audioPlayer";
 import './AudioPlayer.css'
 
@@ -12,9 +12,9 @@ const AudioPlayer = () => {
   // const [currSong, setCurrSong] = useState('');
   // const [currSongUrl, setCurrSongUrl] = useState('');
 
-  useEffect(() => {
-    // dispatch(songsActions.getSongs())
-  }, [dispatch])
+  // useEffect(() => {
+  //   // dispatch(songsActions.getSongs())
+  // }, [dispatch])
 
   const selectSong = async (e, song) => {
     e.preventDefault();
