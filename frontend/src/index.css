@@ -36,6 +36,7 @@ footer {
 }
 
 .content-container{
+  max-width: 1240px;
   width: 90%;
   height: 100%;
   margin: 46px auto 0 auto;

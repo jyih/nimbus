@@ -11,12 +11,12 @@ module.exports = {
       {
         userId: 2,
         title: 'Moonlight Densetsu Lo-Fi Remix',
-        imageUrl: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/moonlight-densetsu-lo-fi-remix.jpg',
+        imageUrl: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/album-art/moonlight-densetsu-lo-fi-remix.jpg',
       },
       {
         userId: 3,
         title: 'Mumford & Sons - I Will Wait (Bloombox & Sam Feldt Remix)',
-        imageUrl: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/i-will-wait-mumford-and-sons-bloombox-and-sam-feldt-remix.jpg',
+        imageUrl: 'https://nimbus-sounds.s3.us-west-1.amazonaws.com/album-art/i-will-wait-mumford-and-sons-bloombox-and-sam-feldt-remix.jpg',
       },
     ], {});
   },

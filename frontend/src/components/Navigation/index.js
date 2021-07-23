@@ -12,48 +12,58 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink exact to='/upload'>Upload</NavLink>
-        <ProfileButton user={sessionUser} />
+        <div className='nav-button-container'>
+          <NavLink exact to='/upload'>Upload</NavLink>
+          <ProfileButton user={sessionUser} />
+        </div>
       </>
     );
   } else {
     sessionLinks = (
       // <div className='nav-login-left'>
       //<LoginFormModal />
-      <>
-        <NavLink exact to='/login'>
-          <button className='nav-button button-sign-in'>
-            Sign in
-          </button>
-        </NavLink>
-        <div className='nav-create-account'>
+      <div className='nav-credentials-container'>
+        <div className='nav-button-container'>
+          <NavLink exact to='/login'>
+            <button className='nav-button button-sign-in'>
+              Sign in
+            </button>
+          </NavLink>
+        </div>
+        <div className='nav-button-container nav-create-account'>
           <NavLink to="/signup">
             <button className='nav-button button-create-account'>
               Create account
             </button>
           </NavLink>
         </div>
-      </>
+      </div>
       // </div>
     );
   }
 
   return (
     <nav className='navbar-container'>
-      <div className='nav-logo-container'>
-        <img className='nav-logo' alt='Nimbus Sounds' src='https://nimbus-sounds.s3.us-west-1.amazonaws.com/nimbus-grey.png'>
-        </img>
+      <div className='navbar-content-container'>
+        <div className='navbar-left-container'>
+          <div className='nav-logo-container'>
+            <img className='nav-logo'
+              alt='Nimbus Sounds'
+              src='https://nimbus-sounds.s3.us-west-1.amazonaws.com/logos/nimbus-grey.png'
+            />
+          </div>
+          <div className='nav-button-container'>
+            <NavLink className='nav-home' exact to="/">
+              Home
+            </NavLink>
+          </div>
+        </div>
+        <div className='nav-site-title'>
+          Nimbus Sounds
+        </div>
+        {isLoaded && sessionLinks}
       </div>
-      <div className='nav-home'>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-      </div>
-      <div className='nav-site-title'>
-        Nimbus Sounds
-      </div>
-      {isLoaded && sessionLinks}
-    </nav>
+    </nav >
   );
 }
 
